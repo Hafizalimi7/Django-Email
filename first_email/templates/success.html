@@ -1,3 +1,5 @@
+{% extends "base.html" %} 
 {%block content%}
-That message has been sent thank you, {{authors.title }} {{authors.author}}
-{%endblock%}
+That message has been sent thank you, {{object.title }} {{object.author}}
+<div>This is the email you sent - <p>{{object.body}}</p></div>
+{%endblock%}  

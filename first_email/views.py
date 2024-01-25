@@ -1,5 +1,6 @@
+from typing import Any
 from django.shortcuts import render
-from django.views.generic import FormView, TemplateView
+from django.views.generic import FormView, TemplateView, DetailView, ListView
 from .forms import InputForm
 from .models import UserEmail
 from django.urls import reverse_lazy
@@ -13,19 +14,27 @@ class HomeView(TemplateView):
 class UserView(FormView):
   template_name = "email.html"
   form_class = InputForm
+  
   success_url = reverse_lazy('success')
   
   def form_valid(self, form):
     form.save()
+    pk_value = form.instance.pk
+    self.success_url = reverse_lazy('success', kwargs={'pk': pk_value})
     return super(UserView, self).form_valid(form)
-  
 
-class EmailSent(TemplateView):
+
+class EmailSent(DetailView):
   template_name = 'success.html'
-  def get(self, request):
-    author = UserEmail.objects.get(author)
-    print(author)
-    return render(request, 'success.html', context={'authors': author})
+  model = UserEmail
+
+
+class AllEmails(ListView):
+  model = UserEmail
+  template_name = 'allmail.html'
+  context_object_name = 'all_emails'
+  ordering = ['-date']
+ 
 
   
  

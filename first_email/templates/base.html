@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-  <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title></title>
-    </head>
-        <body>
-          <header>
-            <h1><a href="{%url 'email'%}">Django Email</h1>
-          </header>
-              <div>
-                  {%block content%}
-                  {% endblock %}
-
-              </div>
+<html>
+  <head>
+    <title>Email App</title>
+  </head>
+  <body>
+    <header>
+      <h1>Email App</h1>
+    </header>
+    <div>
+      {%block content%}
+      <p><a href="{% url 'email'%}">Click for email</a></p>
+      {%endblock content%}
+    </div>
   </body>
 </html>
+
+

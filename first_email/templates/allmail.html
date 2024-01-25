@@ -1,0 +1,6 @@
+<!-- allmail.html -->
+{% for email in all_emails %}
+    <h2>{{ email.title }} {{ email.author }}</h2>
+    <p>{{ email.body }}</p>
+    <p>Published on: {{ email.date }}</p>
+{% endfor %}
